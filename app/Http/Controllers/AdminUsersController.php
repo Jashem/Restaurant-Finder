@@ -22,7 +22,7 @@ class AdminUsersController extends Controller
             $users = User::all();
             return view('admin.users.index',compact('users'));
         } else{
-            return view('login');
+            return view('welcome');
         }
         
     }

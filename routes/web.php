@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/users', 'AdminUsersController@index');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/users', 'AdminUsersController@index');
+
+
+Route::resource('admin/restaurants', 'RestaurantController');
