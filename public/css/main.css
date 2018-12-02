@@ -1,0 +1,32 @@
+.img-thumbnail img {
+	width: 100%;
+}
+
+.img-thumbnail {
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.img-thumbnail .caption-full {
+	padding: 9px;
+}
+
+.delete-form {
+	display: inline-block;
+}
+
+.navbar-inner {
+	background:transparent;
+}
+
+.content {
+	text-align: center;
+}
+
+.title {
+	font-size: 84px;
+}
+
+.m-b-md {
+	margin-bottom: 30px;
+}

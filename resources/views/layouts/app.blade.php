@@ -18,24 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-
-    <style>
-        .html, body {
-	        background-image: url("{{ asset('images/cover.jpg') }}");
-            background-size: cover;
-            color: #fff;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-
-        }
-    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark navbar-inner">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -51,7 +37,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto link">
+                    <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -93,26 +79,10 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <div class="content">
-                <div class="title m-b-md">
-                    Welcome To Restaurant Finder!
-                </div>
 
-                <form>
-                    <div class="row">
-                        <div class="col-lg-12">
-                         <div class="input-group input-group-lg">
-                            @csrf
-                           <input type="text" class="form-control input-lg" id="search-church" placeholder="Location">
-                           <span class="input-group-btn">
-                             <button class="btn btn-success btn-lg" type="submit">Search</button>
-                           </span>
-                         </div>
-                       </div>
-                     </div>
-                </form>
-            </div>
-        </div>
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>
