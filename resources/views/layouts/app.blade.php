@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="app">
@@ -51,7 +53,7 @@
                         @else
                             @can('admin-options')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home') }}">Restaurants</a>
+                                    <a class="nav-link" href="{{ route('restaurants.index') }}">Restaurants</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/admin/users') }}">Users</a>
@@ -63,6 +65,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}">Update user info</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

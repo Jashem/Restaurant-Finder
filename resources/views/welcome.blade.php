@@ -65,7 +65,7 @@
                         @else
                             @can('admin-options')
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home') }}">Restaurants</a>
+                                    <a class="nav-link" href="{{ route('restaurants.index') }}">Restaurants</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/admin/users') }}">Users</a>
@@ -94,6 +94,17 @@
             </div>
         </nav>
         <div class="container">
+            @if ($message = Session::get('warning'))
+
+            <div class="alert alert-warning alert-block">
+            
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+            
+                <strong>{{ $message }}</strong>
+            
+            </div>
+            
+            @endif
             <div class="content">
                 <div class="title m-b-md">
                     Welcome To Restaurant Finder!

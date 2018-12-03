@@ -22,7 +22,7 @@ class RestaurantController extends Controller
             $restaurants = Restaurant::all();
             return view('admin.restaurants.index',compact('restaurants'));
         } else{
-            return view('welcome');
+            return redirect()->route("home")->with("warning","You need to be admin to do that");
         }
 
         //
@@ -40,7 +40,7 @@ class RestaurantController extends Controller
         if (Gate::allows('admin-options')) {
             return view('admin.restaurants.create');
         } else{
-            return view('welcome');
+            return redirect()->route("home")->with("warning","You need to be admin to do that");
         }
         
     }
@@ -69,6 +69,8 @@ class RestaurantController extends Controller
         $input['photo_id'] = $photo->id;
         $input['user_id'] = Auth::user()->id;
         Restaurant::create($input);
+
+        return redirect('admin/restaurants')->with('success','Restaurant added successfully');
     }
 
     /**
@@ -91,6 +93,14 @@ class RestaurantController extends Controller
     public function edit($id)
     {
         //
+
+        $restaurant = Restaurant::findOrFail($id);
+
+        if (Gate::allows('admin-options')) {
+            return view('admin.restaurants.edit', compact('restaurant'));
+        } else{
+            return redirect()->route("home")->with("warning","You need to be admin to do that");
+        }
     }
 
     /**
@@ -103,6 +113,24 @@ class RestaurantController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            'name' => 'required|',
+            'address' => 'required',
+            'contact' => 'required|numeric',
+            'photo_id' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $restaurant = Restaurant::findOrFail($id);
+        $input = $request->all();
+        $name = time() . $request->photo_id->getClientOriginalName();
+        $request->file('photo_id')->move(public_path('images'), $name);
+        unlink($restaurant->photo->path);
+        Photo::destroy($restaurant->photo_id);
+        $photo = Photo::create(['path'=>$name]);
+        $input['photo_id'] = $photo->id;
+        $input['user_id'] = Auth::user()->id;
+        $restaurant->update($input);
+
+        return redirect('admin/restaurants')->with('success','Restaurant updated successfully');
     }
 
     /**
@@ -114,5 +142,10 @@ class RestaurantController extends Controller
     public function destroy($id)
     {
         //
+        $restaurant = Restaurant::findOrFail($id);
+        unlink($restaurant->photo->path);
+        Photo::destroy($restaurant->photo_id);
+        $restaurant->delete();
+        return redirect('admin/restaurants')->with('success','Restaurant deleted successfully');
     }
 }

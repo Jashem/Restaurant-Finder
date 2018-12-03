@@ -3,6 +3,17 @@
 @section('content')
 
 <div class="container">
+    @if ($message = Session::get('warning'))
+
+    <div class="alert alert-warning alert-block">
+    
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+    
+        <strong>{{ $message }}</strong>
+    
+    </div>
+    
+    @endif
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
