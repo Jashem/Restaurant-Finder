@@ -26,3 +26,7 @@ Route::patch('/users/{id}/', 'UsersController@update')->name('users.update');
 
 
 Route::resource('admin/restaurants', 'RestaurantController');
+
+Route::get('search', 'SearchController@search')->name('search');
+Route::get('restaurants/{restaurant}', 'SearchController@show')->name('show');
+

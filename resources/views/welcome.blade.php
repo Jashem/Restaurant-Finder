@@ -106,17 +106,28 @@
             </div>
             
             @endif
+            @if ($message = Session::get('success'))
+
+            <div class="alert alert-warning alert-block">
+            
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+            
+                <strong>{{ $message }}</strong>
+            
+            </div>
+            
+            @endif
             <div class="content">
                 <div class="title m-b-md">
                     Welcome To Restaurant Finder!
                 </div>
 
-                <form>
+            <form action="{{route('search')}}" method="GET">
                     <div class="row">
                         <div class="col-lg-12">
                          <div class="input-group input-group-lg">
                             @csrf
-                           <input type="text" class="form-control input-lg" id="search-church" placeholder="Location">
+                           <input type="text" name="search" class="form-control input-lg" id="search-church" placeholder="Location">
                            <span class="input-group-btn">
                              <button class="btn btn-success btn-lg" type="submit">Search</button>
                            </span>
