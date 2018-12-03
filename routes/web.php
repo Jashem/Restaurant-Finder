@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/admin/users', 'AdminUsersController@index');
 
+Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::patch('/users/{id}/', 'UsersController@update')->name('users.update');
+
 
 Route::resource('admin/restaurants', 'RestaurantController');

@@ -14,7 +14,15 @@ class RestaurantController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     *
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -54,7 +62,6 @@ class RestaurantController extends Controller
     public function store(Request $request)
     {
         //
-
         $validatedData = $request->validate([
             'name' => 'required|',
             'address' => 'required',
@@ -71,6 +78,7 @@ class RestaurantController extends Controller
         Restaurant::create($input);
 
         return redirect('admin/restaurants')->with('success','Restaurant added successfully');
+
     }
 
     /**
@@ -94,9 +102,9 @@ class RestaurantController extends Controller
     {
         //
 
-        $restaurant = Restaurant::findOrFail($id);
 
         if (Gate::allows('admin-options')) {
+            $restaurant = Restaurant::findOrFail($id);
             return view('admin.restaurants.edit', compact('restaurant'));
         } else{
             return redirect()->route("home")->with("warning","You need to be admin to do that");
