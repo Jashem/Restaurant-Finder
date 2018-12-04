@@ -15,4 +15,9 @@ class Restaurant extends Model
     public function photo(){
         return $this->belongsTo('App\Photo');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment')->orderBy('updated_at', 'desc');
+    }
 }
