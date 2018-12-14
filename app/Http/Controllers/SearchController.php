@@ -39,7 +39,7 @@ class SearchController extends Controller
     {
         //
         if(Auth::check()){
-            $restaurants = Restaurant::where('address', 'like', '%' .$request->search . '%' )->get();
+            $restaurants = Restaurant::where('address', 'like', '%' .$request->search. '%' )->get();
             return view('search.index',compact('restaurants'));
         }
 
@@ -55,9 +55,10 @@ class SearchController extends Controller
     public function show($id)
     {
         //
+        $search = request()->search;
         if(Auth::check()){
             $restaurant = Restaurant::findOrFail($id);
-            return view('search.show',compact('restaurant'));
+            return view('search.show',compact('restaurant', 'search'));
         }
         return redirect('/')->with('warning','You need to be logged in to do that');
     }

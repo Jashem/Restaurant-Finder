@@ -17,11 +17,10 @@
     <div class="row">
         <div class="col-md-3">
             <p class="lead">Restaurant Finder</p>
-            <div class="list-group">
-                <li class="list-group-item active">Info 1</li>
-                <li class="list-group-item">Info 2</li>
-                <li class="list-group-item">Info 3</li>
-            </div>
+            <form action="{{route('search')}}" method="GET">
+                <input type="hidden" name="search" value="{{$search}}">
+                <button  class="btn btn-outline-primary btn-block" type="submit">Go Back</button>
+            </form>
         </div>
         <div class="col-md-9">
             <div class="img-thumbnail">

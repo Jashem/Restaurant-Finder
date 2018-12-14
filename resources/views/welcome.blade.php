@@ -125,8 +125,7 @@
             <form action="{{route('search')}}" method="GET">
                     <div class="row">
                         <div class="col-lg-12">
-                         <div class="input-group input-group-lg">
-                            @csrf
+                         <div class="input-group input-group-lg">  
                            <input type="text" name="search" class="form-control input-lg" id="search-church" placeholder="Location">
                            <span class="input-group-btn">
                              <button class="btn btn-success btn-lg" type="submit">Search</button>

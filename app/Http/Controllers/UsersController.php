@@ -86,7 +86,8 @@ class UsersController extends Controller
         $input['password'] = bcrypt($request->password);
         $user = User::findOrFail($id);
         $user->update($input);
-        return redirect('/')->with('success','User info updated successfully');
+        Auth::logout();
+        return redirect('/login')->with('success','User info updated successfully');
      }
 
     /**

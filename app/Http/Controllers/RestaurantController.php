@@ -125,16 +125,20 @@ class RestaurantController extends Controller
             'name' => 'required|',
             'address' => 'required',
             'contact' => 'required|numeric',
-            'photo_id' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo_id' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $restaurant = Restaurant::findOrFail($id);
         $input = $request->all();
-        $name = time() . $request->photo_id->getClientOriginalName();
-        $request->file('photo_id')->move(public_path('images'), $name);
-        unlink($restaurant->photo->path);
-        Photo::destroy($restaurant->photo_id);
-        $photo = Photo::create(['path'=>$name]);
-        $input['photo_id'] = $photo->id;
+        
+        if($request->hasFile('photo_id')){
+            $name = time() . $request->photo_id->getClientOriginalName();
+            $request->file('photo_id')->move(public_path('images'), $name);
+            unlink($restaurant->photo->path);
+            Photo::destroy($restaurant->photo_id);
+            $photo = Photo::create(['path'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+
         $input['user_id'] = Auth::user()->id;
         $restaurant->update($input);
 
