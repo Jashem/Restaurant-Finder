@@ -13,6 +13,12 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -59,7 +65,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
-        if(Auth::check()){
+        if(Auth::id() == $id){
             $user = User::findOrFail($id);
             return view('users.edit', compact('user'));
         } else {

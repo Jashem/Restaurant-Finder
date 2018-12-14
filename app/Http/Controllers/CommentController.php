@@ -14,6 +14,12 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
@@ -74,8 +80,8 @@ class CommentController extends Controller
     public function edit($id)
     {
         //
-        if(Auth::check()){
-            $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($id);
+        if(Auth::id() == $comment->user_id){
             return view('comments.edit', compact('comment'));
         }
         return redirect()->back()->with("warning","You need to be logged in to do that");
