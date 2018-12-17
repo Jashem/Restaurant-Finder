@@ -21,22 +21,22 @@ Route::get('/admin/users', 'AdminUsersController@index');
 
 Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 
-Route::patch('/users/{id}/', 'UsersController@update')->name('users.update');
+Route::put('/users/{id}/', 'UsersController@update')->name('users.update');
 
 
-Route::resource('admin/restaurants', 'RestaurantController');
+Route::resource('/admin/restaurants', 'RestaurantController');
 
-Route::get('search', 'SearchController@search')->name('search');
+Route::get('/search', 'SearchController@search')->name('search');
 
-Route::get('restaurants/{restaurant}', 'SearchController@show')->name('show');
+Route::get('/{search}/restaurants/{restaurant}', 'SearchController@show')->name('show');
 
-Route::get('restaurants/{restaurant}/comments/create', 'CommentController@create')->name('comments.create');
+Route::get('/{search}/restaurants/{restaurant}/comments/create', 'CommentController@create')->name('comments.create');
 
 Route::post('restaurants/comments', 'CommentController@store')->name('comments.store');
 
-Route::get('restaurants/comments/{comment}/edit', 'CommentController@edit')->name('comments.edit');
+Route::get('/{search}/restaurants/comments/{comment}/edit', 'CommentController@edit')->name('comments.edit');
 
-Route::patch('restaurants/comments/{comment}', 'CommentController@update')->name('comments.update');
+Route::patch('/restaurants/comments/{comment}', 'CommentController@update')->name('comments.update');
 
-Route::delete('restaurants/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
+Route::delete('/restaurants/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 

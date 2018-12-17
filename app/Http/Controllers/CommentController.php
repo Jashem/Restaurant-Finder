@@ -30,12 +30,12 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($search,$id)
     {
         //
         if(Auth::check()){
             $restaurant = Restaurant::findOrFail($id);
-            return view('comments.create', compact('restaurant'));
+            return view('comments.create', compact('restaurant', 'search'));
         }
         return redirect()->back()->with("warning","You need to be logged in to do that");
     }
@@ -57,7 +57,7 @@ class CommentController extends Controller
         $input['user_id'] = Auth::id();
 
         Comment::create($input);
-        return redirect()->route('show', $request->restaurant_id);
+        return redirect()->route('show', ['search'=>$request->search, 'id'=>$request->restaurant_id]);
     }
 
     /**
@@ -77,12 +77,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($search,$id)
     {
         //
         $comment = Comment::findOrFail($id);
         if(Auth::id() == $comment->user_id){
-            return view('comments.edit', compact('comment'));
+            return view('comments.edit', compact('comment','search'));
         }
         return redirect()->back()->with("warning","You need to be logged in to do that");
     }
@@ -104,7 +104,7 @@ class CommentController extends Controller
         $input = $request->all();
 
         $comment->update($input);
-        return redirect()->route('show', $comment->restaurant_id);
+        return redirect()->route('show', ['search'=>$request->search, 'id'=>$comment->restaurant_id]);
     }
 
     /**

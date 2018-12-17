@@ -17,10 +17,7 @@
     <div class="row">
         <div class="col-md-3">
             <p class="lead">Restaurant Finder</p>
-            <form action="{{route('search')}}" method="GET">
-                <input type="hidden" name="search" value="{{$search}}">
-                <button  class="btn btn-outline-primary btn-block" type="submit">Go Back</button>
-            </form>
+            <a  class="btn btn-outline-primary btn-block" href="{{route('search',['search'=>$search])}}">Go Back</a>
         </div>
         <div class="col-md-9">
             <div class="img-thumbnail">
@@ -36,7 +33,7 @@
             </div>
             <div class="card card-body bg-light">
                 <div class="text-right">
-                    <a class="btn btn-success" href="{{route('comments.create', $restaurant->id)}}">Add New Comment</a>
+                    <a class="btn btn-success" href="{{route('comments.create', ['search'=>$search, 'id'=>$restaurant->id])}}">Add New Comment</a>
                 </div>
 
                 @foreach ($restaurant->comments as $comment)
@@ -47,7 +44,7 @@
                             <span class="float-right">{{$comment->updated_at->diffForHumans()}}</span>
                             <p>{{$comment->body}}</p>
                             @if ($comment->user_id === Auth::id())
-                                <a class="btn btn-sm btn-warning" href="{{route('comments.edit', $comment->id)}}">Edit</a>
+                                <a class="btn btn-sm btn-warning" href="{{route('comments.edit', ['search'=>$search, 'id'=>$comment->id])}}">Edit</a>
                                 <form class="delete-form" action="{{route('comments.destroy', $comment->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')

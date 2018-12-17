@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Auth;
 use App\User;
 
@@ -13,11 +14,6 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -83,6 +79,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'. $id,
@@ -92,8 +89,7 @@ class UsersController extends Controller
         $input['password'] = bcrypt($request->password);
         $user = User::findOrFail($id);
         $user->update($input);
-        Auth::logout();
-        return redirect('/login')->with('success','User info updated successfully');
+        return redirect('/')->with('success','User info updated successfully');
      }
 
     /**

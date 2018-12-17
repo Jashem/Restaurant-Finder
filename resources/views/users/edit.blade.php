@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', $user->id) }}">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 

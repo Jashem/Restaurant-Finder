@@ -52,10 +52,9 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($search,$id)
     {
         //
-        $search = request()->search;
         if(Auth::check()){
             $restaurant = Restaurant::findOrFail($id);
             return view('search.show',compact('restaurant', 'search'));

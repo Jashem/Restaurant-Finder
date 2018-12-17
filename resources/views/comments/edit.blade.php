@@ -20,7 +20,7 @@
                         <button class="btn btn-lg btn-primary btn-block">Update!</button>
                     </div>
                 </form>
-            <a href="{{route('show', $comment->restaurant_id)}}">Go Back</a>
+            <a href="{{route('show', ['search'=> $search,'id'=>$comment->restaurant_id])}}">Go Back</a>
             </div>
         </div>
     </div>

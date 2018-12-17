@@ -21,8 +21,8 @@
                     <img src="{{asset($restaurant->photo->path)}}" class="img-fluid" alt="Responsive image">
                     <div class="caption">
                         <h4>{{$restaurant->name}}</h4>
-                    </div>
-                    <p><a href="{{route('show',$restaurant->id)}}" class="btn btn-primary">More Info</a></p>
+					</div>
+                    <p><a href="{{route('show',['search'=>app('request')->input('search'),'id'=>$restaurant->id])}}" class="btn btn-primary">More Info</a></p>
                 </div>
             </div>
             
