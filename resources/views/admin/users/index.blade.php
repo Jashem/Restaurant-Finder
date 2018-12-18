@@ -14,31 +14,31 @@
     </div>
     
     @endif
-    <table class="table table-hover table-bordered">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Type</th>
-            <th scope="col">Created</th>
-            <th scope="col">Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-                <tr>
-                <th scope="row">{{$user->id}}</th>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->role->name}}</td>
-                    <td>{{$user->created_at->diffForHumans()}}</td>
-                    <td>{{$user->updated_at->diffForHumans()}}</td>
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Registered Users</h3>
+        <div class="card-body">
+            <table class="table table-bordered table-responsive-md table-striped text-center table-hover">
+                <tr class="text-center">
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
                 </tr>
-            @endforeach
-        
-        </tbody>
-    </table> 
+                @foreach ($users as $user)
+                    <tr>
+                        <th scope="row" class="pt-3-half">{{$user->id}}</th>
+                        <td class="pt-3-half">{{$user->name}}</td>
+                        <td class="pt-3-half">{{$user->email}}</td>
+                        <td class="pt-3-half">{{$user->role->name}}</td>
+                        <td class="pt-3-half">{{$user->created_at->diffForHumans()}}</td>
+                        <td class="pt-3-half">{{$user->updated_at->diffForHumans()}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </div> 
 </div>
 
 @endsection

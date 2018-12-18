@@ -122,9 +122,7 @@ class RestaurantController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'name' => 'required|',
-            'address' => 'required',
-            'contact' => 'required|numeric',
+            'contact' => 'numeric',
             'photo_id' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $restaurant = Restaurant::findOrFail($id);

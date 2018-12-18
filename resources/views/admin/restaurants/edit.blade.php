@@ -28,7 +28,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
-                            <input id="name" type="text" class="form-control{{$errors->has('name')? ' is-invalid' : '' }}" name="name" value="{{$restaurant->name}}" required autofocus>
+                            <input id="name" type="text" class="form-control{{$errors->has('name')? ' is-invalid' : '' }}" name="name" value="{{$restaurant->name}}" autofocus>
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
@@ -39,7 +39,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control{{$errors->has('address')? ' is-invalid' : '' }}" name="address" value="{{$restaurant->address}}" required>
+                                <input id="address" type="text" class="form-control{{$errors->has('address')? ' is-invalid' : '' }}" name="address" value="{{$restaurant->address}}">
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
                                 </span>
@@ -50,7 +50,7 @@
                             <label for="contact" class="col-md-4 col-form-label text-md-right">Contact Number</label>
 
                             <div class="col-md-6">
-                                <input id="contact" type="text" class="form-control{{$errors->has('contact')? ' is-invalid' : '' }}" name="contact" value="{{$restaurant->contact}}" required>
+                                <input id="contact" type="text" class="form-control{{$errors->has('contact')? ' is-invalid' : '' }}" name="contact" value="{{$restaurant->contact}}">
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('contact') }}</strong>
                                 </span>
