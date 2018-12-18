@@ -11,6 +11,7 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group">
+                    <input type="hidden" name="search" value="{{$search}}">
                     <textarea id="body" class="form-control{{ $errors->has('body')? 'is-invalid ' : ''}}" name="body" required autofocus>{{$comment->body}}</textarea>
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$errors->first('body')}}</strong>
