@@ -19,7 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('photo_id');
             $table->string('name');
             $table->string('address');
-            $table->bigInteger('contact')->unsigned();
+            $table->string('contact');
             $table->timestamps();
         });
     }

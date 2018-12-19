@@ -1,5 +1,6 @@
 .img-thumbnail img {
 	width: 100%;
+	height: 70%;
 }
 
 .img-thumbnail {
@@ -37,4 +38,12 @@
 
 .pt-3-half {
 	padding-top: 1.4rem;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.list-item {
+    display: flex;
 }

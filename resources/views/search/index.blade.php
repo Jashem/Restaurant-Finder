@@ -13,11 +13,11 @@
 		</div>
 	</header>
 
-	<div class="row text-center">
+	<div class="row text-center list">
 
         @foreach ($restaurants as $restaurant)
-            <div class="col-md-3 col-sm-6">
-                <div class="img-thumbnail" alt="Responsive image">
+            <div class="col-lg-3 col-md-4 col-xs-6 list-item">
+                <div class="img-thumbnail">
                     <img src="{{asset($restaurant->photo->path)}}" class="img-fluid" alt="Responsive image">
                     <div class="caption">
                         <h4>{{$restaurant->name}}</h4>
@@ -27,7 +27,6 @@
             </div>
             
         @endforeach
-		</div>
 	</div>
 </div>
 
